@@ -15,3 +15,29 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(document).ready(function() {
+    var $alerts = $('#alerts');
+    if ($alerts.length) {
+        centerAbsoluteElement($alerts);
+        hideAlertAfterDelay($alerts, 5000);
+    }
+});
+
+function centerAbsoluteElement(element) {
+    var width = element.css('width');
+    var height = element.css('height');
+
+    width = width.replace('px', '');
+    height = height.replace('px', '');
+
+    element.css('left', ($(window).width() / 2) - (width / 2));
+    element.css('top', ($(window).height() / 6) - (height / 2));
+}
+
+function hideAlertAfterDelay(element, delay) {
+    element.delay(delay).fadeOut(200, function() {
+        $(this).alert('close');
+    });
+}
