@@ -10,7 +10,7 @@ User.create({
   password: 'foobar'
 })
 
-7.times do |n|
+3.times do |n|
   Product.create({
     name: Faker::Lorem.unique.words(rand(3) +1).join(' '),
     description: Faker::Lorem.paragraph(3, false, 2),
@@ -19,7 +19,7 @@ User.create({
   })
 end
 
-20.times do |n|
+10.times do |n|
   Product.create({
     name: Faker::Lorem.unique.words(rand(3) +1).join(' '),
     description: Faker::Lorem.paragraph(3, false, 2),

@@ -1,28 +1,8 @@
 <div class="container">
-    <% @products.each do |product| %>
-        <div class="col-sm-4 product">
-          <div class="thumbnail" >
-            <%= link_to '#' do %>
-                <%= image_tag product.image.url(:medium) %>
-                <div class="row product-header">
-                  <div class="col-sm-8">
-                    <h3><%= product.name %></h3>
-                  </div>
-                  <div class="col-sm-4 price">
-                    <h3>
-                      <label class="pull-right">$<%= product.price %></label>
-                    </h3>
-                  </div>
-                </div>
-            <% end %>
-              <div class="description">
-                <p><%= product.description %></p>
-              </div>
-              <%= link_to 'Add to Cart', class: 'btn btn-success btn-add-to-cart' do %>
-                <span class="fa fa-shopping-cart"></span> Add to Cart
-              <% end %>
-          </div>
-        </div>
-    <% end %>
-    <%= will_paginate(@products) %>
+    <%= render @products %>
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <%= will_paginate(@products) %>
+      </div>
+    </div>
 </div>

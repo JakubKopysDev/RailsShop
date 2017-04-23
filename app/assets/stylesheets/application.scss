@@ -16,6 +16,10 @@
 .thumbnail {
   position: relative;
   height: 350px;
+  .product-thumbnail {
+    height: 150px;
+    width: 100%;
+  }
   .description {
     text-overflow: elipsis;
     word-break: break-all;
