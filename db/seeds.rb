@@ -8,6 +8,7 @@ User.create({
   name: 'Jakub',
   email: 'foo@bar.com',
   password: 'foobar'
+  admin: true
 })
 
 3.times do |n|
