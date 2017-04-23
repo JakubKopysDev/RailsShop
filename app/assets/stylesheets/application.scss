@@ -5,3 +5,30 @@
   position: fixed;
   z-index: 1;
 }
+
+.product-form {
+  textarea#product_description {
+    resize: vertical;
+    max-height: 250px;
+  }
+}
+
+.thumbnail {
+  position: relative;
+  height: 350px;
+  .description {
+    text-overflow: elipsis;
+    word-break: break-all;
+    height: 70px;
+  }
+  .btn-add-to-cart {
+    position: absolute;
+    right:    10px;
+    bottom:   10px;
+  }
+}
+div.pagination {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}

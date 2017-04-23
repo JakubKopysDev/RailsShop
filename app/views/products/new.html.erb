@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container product-form">
   <div class="col-sm-6 col-sm-offset-3">
     <%= form_for(@product, multipart: true) do |f| %>
         <div class="field">
@@ -13,7 +13,10 @@
 
         <div class="field form-group">
           <%= f.label :price, class: 'control-label' %>
-          <%= f.text_field :price, class: 'form-control' %>
+          <div class="input-group">
+            <%= f.number_field :price, min: 1, step: 'any', class: 'form-control' %>
+            <span class="input-group-addon">$</span>
+          </div>
         </div>
 
         <div class="field form-group">
