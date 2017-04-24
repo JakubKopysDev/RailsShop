@@ -20,7 +20,7 @@
         <span class="fa fa-shopping-cart"></span> Add to Cart
       <% end %>
       <% if current_user.admin? %>
-        <%= link_to 'Edit', class: 'btn btn-info btn-edit-product' do %>
+        <%= link_to edit_admin_product_path(product), class: 'btn btn-info btn-edit-product' do %>
           <span class=""></span> Edit
         <% end %>
       <% end %>

@@ -5,6 +5,8 @@ class Product < ApplicationRecord
   validates :description, length: {in: 4..500}
   validates :price, numericality: {greater_than: 0}
 
+  has_many :cart_items, dependent: :destroy
+
   def delete_image
     self.image.destroy
     self.image = nil
