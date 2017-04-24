@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   authenticated do
     root to: 'home#index', as: :authenticated
     namespace :admin do
-      get '', to: 'dashboard#index', as: '/'
+      get '', to: 'admin#index', as: '/'
       resources :products, only: [:index, :new, :edit, :create, :update, :destroy]
     end
   end
