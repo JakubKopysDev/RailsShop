@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h1>Manage Users</h1>
+    <table class="table table-bordered">
+      <thead>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id  %></td>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td>
+            <%= link_to 'Delete', admin_user_path(user.id), method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @users %>
+  </div>
+</div>

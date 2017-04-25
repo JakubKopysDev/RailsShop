@@ -1,11 +1,33 @@
 class ProductsController < ApplicationController
-  before_action :find_product, only: [:show]
+  before_action :find_product, only: [:edit, :update]
 
   def index
-    @products = Product.order('created_at DESC').paginate(page: params[:page], per_page: 9)
+    @products = Product.order('created_at DESC').paginate(page: params[:page], per_page: 8)
   end
 
-  def show
+  def new
+    @product = Product.new
+  end
+
+  def create
+    @product = Product.new product_params
+
+    if @product.save
+      redirect_to products_path, notice: 'Product was successfully created.'
+    else
+      render action: 'new'
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @product.update product_params
+      redirect_to products_path, notice: 'Product was successfully updated.'
+    else
+      render action: 'edit'
+    end
   end
 
   private

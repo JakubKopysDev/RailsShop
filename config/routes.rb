@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     namespace :admin do
       get '', to: 'admin#index', as: '/'
       resources :products, only: [:index, :new, :edit, :create, :update, :destroy]
+      resources :users, only: [:index, :destroy]
     end
   end
 
