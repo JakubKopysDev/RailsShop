@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
   end
 
-  def authorize_user object
+  def authorize_user(object)
     if object.try(:user) == current_user
       redirect_to root_path, alert: 'Not authorized'
     end
