@@ -8,7 +8,6 @@ User.create({
   name: 'Jakub',
   email: 'foo@bar.com',
   password: 'foobar'
-  admin: true
 })
 
 3.times do |n|
@@ -27,3 +26,6 @@ end
     price: Faker::Number.between(10, 1000) / 10.0,
   })
 end
+
+
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
