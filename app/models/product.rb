@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
   validates :name, length: {in: 4..25}, uniqueness: true
   validates :description, length: {in: 4..500}
-  validates :price, numericality: {greater_than: 0}
+  validates :price, numericality: {greater_than_or_equal_to: 1.0}
 
   has_many :cart_items, dependent: :destroy
 
