@@ -14,5 +14,8 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index, :show]
 
-  # TODO: authenticate :user do / add to cart etc /
+  authenticate :user do
+		get :cart, to: 'carts#show'
+		resources :cart_items, only: [:create, :destroy]
+  end
 end

@@ -76,6 +76,9 @@ GEM
       thor (~> 0.19)
     brakeman (3.6.1)
     builder (3.2.3)
+    bullet (5.5.1)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.10.0)
     byebug (9.0.6)
     cancan (1.6.10)
     cancancan (1.16.0)
@@ -151,6 +154,8 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.7)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
+    macaddr (1.7.1)
+      systemu (~> 2.6.2)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
@@ -249,7 +254,10 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     rubocop-rspec (1.15.0)
       rubocop (>= 0.42.0)
+    ruby-growl (4.1)
+      uuid (~> 2.3, >= 2.3.5)
     ruby-progressbar (1.8.1)
+    ruby_gntp (0.3.4)
     sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -270,6 +278,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    systemu (2.6.5)
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.7)
@@ -281,6 +290,9 @@ GEM
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.2.1)
+    uniform_notifier (1.10.0)
+    uuid (2.3.8)
+      macaddr (~> 1.0)
     warden (1.2.7)
       rack (>= 1.0)
     web-console (3.5.0)
@@ -302,6 +314,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3, >= 3.3.7)
   bootstrap-will_paginate (~> 1.0)
   brakeman
+  bullet
   byebug
   cancan
   cancancan (~> 1.13, >= 1.13.1)
@@ -321,6 +334,8 @@ DEPENDENCIES
   rspec-rails (~> 3.5)
   rubocop
   rubocop-rspec
+  ruby-growl
+  ruby_gntp
   sass-rails (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)

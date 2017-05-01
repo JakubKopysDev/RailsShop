@@ -1,0 +1,28 @@
+<div class="contanier">
+  <div class="col-sm-6 col col-sm-offset-3">
+    <h3>Your shopping cart</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items.each do |item| %>
+          <tr>
+            <td class="col-sm-5"><%= item.product.name %></td>
+            <td class="col-sm-5"><%= item.product.price %> $</td>
+            <td class="col-sm-2">
+              <%= link_to 'Remove', cart_item_path(item), method: :delete, class: 'btn btn-danger' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="col-sm-3 col-sm-offset-9">
+      <%= link_to 'Checkout', '#', class: 'btn btn-success pull-right' %>
+    </div>
+  </div>
+</div>

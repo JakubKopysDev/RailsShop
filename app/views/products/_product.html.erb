@@ -16,7 +16,7 @@
       <div class="description">
         <%= truncate product.description, length: 180 %>
       </div>
-      <%= link_to 'Add to Cart', class: 'btn btn-success btn-add-to-cart' do %>
+      <%= link_to cart_items_path(product_id: product.id), method: :post, class: 'btn btn-success btn-add-to-cart' do %>
         <span class="fa fa-shopping-cart"></span> Add to Cart
       <% end %>
   </div>

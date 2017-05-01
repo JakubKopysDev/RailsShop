@@ -6,6 +6,8 @@ class User < ApplicationRecord
          :authentication_keys => [:login]
   validates :name, length: {in: 4..25}, uniqueness: true
   attr_accessor :login
+  has_one :cart
+  has_many :cart_items, through: :cart
 
   # overwrite Devise authentication - allow login using email or name
   def self.find_for_database_authentication(warden_conditions)
