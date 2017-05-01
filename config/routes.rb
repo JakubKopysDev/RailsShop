@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
   devise_for :users
 
-  authenticated do
+  authenticated :user do
     root to: 'home#index', as: :authenticated
-    namespace :admin do
-      get '', to: 'admin#index', as: '/'
-      resources :products, only: [:index, :new, :edit, :create, :update, :destroy]
-      resources :users, only: [:index, :destroy]
-    end
   end
 
   devise_scope :user do
@@ -15,4 +13,9 @@ Rails.application.routes.draw do
   end
 
   resources :products, only: [:index, :show]
+
+  authenticate :user do
+		get :cart, to: 'carts#show'
+		resources :cart_items, only: [:create, :destroy]
+  end
 end
