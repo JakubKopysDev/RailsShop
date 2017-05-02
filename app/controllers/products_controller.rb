@@ -1,8 +1,18 @@
 class ProductsController < ApplicationController
+  respond_to :html, :json
   before_action :find_product, only: [:edit, :update]
 
   def index
-    @products = Product.order('created_at DESC').paginate(page: params[:page], per_page: 8)
+    #@products = Product.order('created_at DESC').paginate(page: params[:page], per_page: 8)
+    # @products = Product.select(:id, :name).all
+    # render json: @products
+    @products = Product.select(:id, :name).all
+    render json: @products.map{ |product| { id: product.id, text: product.name } }
+    # respond_with @products
+      # f.json {
+      #   render json: Product.select(:id, :name).all
+      # }
+
   end
 
   def new

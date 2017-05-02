@@ -13,6 +13,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require select2-full
 //= require turbolinks
 //= require_tree .
 
@@ -23,6 +24,31 @@ $(document).ready(function() {
         centerAbsoluteElement($alerts);
         hideAlertAfterDelay($alerts, 5000);
     }
+
+    // $('.select-example').select2({
+    //   placeholder: "Select Channels",
+    //   allowClear: true
+    // });
+    //
+    // $('#e1').select2({
+    //   placeholder: "Select Channels",
+    //   allowClear: true
+    // });
+
+    // var data = [{id:1, text: 'xdd'}, {id:2, text:'ddddd'}]
+    // console.log(data);
+    $('#ajax-example').select2({
+      ajax: {
+        url: "/products",
+        dataType: 'json',
+        quietMillis: 500,
+        processResults: function(data, page) {
+          return {
+            results: data
+          };
+        }
+      }
+    });
 });
 
 function centerAbsoluteElement(element) {

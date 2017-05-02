@@ -4,6 +4,11 @@
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
+        <%= f.select(:login) do %>
+          <% [['Lisbon', 1], ['Madrid', 2]].each do |c| -%>
+            <%= content_tag(:option, c.first, value: c.last) %>
+          <% end %>
+        <% end %>
         <div class="field form-group">
           <%= f.label :login, 'Login or Email', class: 'control-label' %><br />
           <%= f.text_field :login, autofocus: true, class: 'form-control' %>

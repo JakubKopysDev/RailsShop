@@ -7,5 +7,6 @@ class CartsController < ApplicationController
     end
 
     @cart_items = @cart.cart_items.includes(:product)
+    @users = User.all
   end
 end
