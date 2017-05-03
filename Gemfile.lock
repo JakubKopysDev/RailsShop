@@ -81,7 +81,6 @@ GEM
       uniform_notifier (~> 1.10.0)
     byebug (9.0.6)
     cancan (1.6.10)
-    cancancan (1.16.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -109,8 +108,6 @@ GEM
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
-    faker (1.7.3)
-      i18n (~> 0.5)
     ffaker (2.5.0)
     ffi (1.9.18)
     formtastic (3.1.5)
@@ -319,11 +316,9 @@ DEPENDENCIES
   bullet
   byebug
   cancan
-  cancancan (~> 1.13, >= 1.13.1)
   coffee-rails (~> 4.2)
   devise (~> 4.2, >= 4.2.1)
   factory_girl_rails
-  faker (~> 1.6, >= 1.6.3)
   ffaker
   jbuilder (~> 2.5)
   jquery-rails

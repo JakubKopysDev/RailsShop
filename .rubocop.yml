@@ -6,6 +6,7 @@ AllCops:
     - db/schema.rb
     - db/migrate/**
     - vendor/**/**
+    - bin/**
 
 Documentation:
   Enabled: false
@@ -27,7 +28,7 @@ Metrics/BlockLength:
     - config/routes.rb
     - spec/**/**.rb
     - shared/spec/**/**.rb
-    
+
 Rails:
   Enabled: true
 

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -14,7 +15,7 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   # Enable/disable caching. By default caching is disabled.
-  if Rails.root.join('tmp/caching-dev.txt').exist?
+  if Rails.root.join('tmp', 'caching-dev.txt').exist?
     config.action_controller.perform_caching = true
 
     config.cache_store = :memory_store
@@ -54,14 +55,14 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.paperclip_defaults = {
-      storage: :s3,
-      s3_region: ENV.fetch('AWS_REGION'),
-      s3_host_name: ENV.fetch('AWS_HOST_NAME'),
-      s3_credentials: {
-          bucket: ENV.fetch('S3_BUCKET_NAME'),
-          access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
-          secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY')
-      }
+    storage: :s3,
+    s3_region: ENV.fetch('AWS_REGION'),
+    s3_host_name: ENV.fetch('AWS_HOST_NAME'),
+    s3_credentials: {
+      bucket: ENV.fetch('S3_BUCKET_NAME'),
+      access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
+      secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY')
+    }
   }
   config.after_initialize do
     Bullet.enable = true

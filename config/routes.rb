@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -13,10 +14,10 @@ Rails.application.routes.draw do
     root to: 'devise/sessions#new'
   end
 
-  resources :products, only: [:index, :show]
+  resources :products, only: %i[index show]
 
   authenticate :user do
-		get :cart, to: 'carts#show'
-		resources :cart_items, only: [:create, :destroy]
+    get :cart, to: 'carts#show'
+    resources :cart_items, only: %i[create destroy]
   end
 end
