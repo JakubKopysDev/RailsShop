@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Product do
   permit_params :name, :description, :price, :image
+  menu priority: 2
 
   config.per_page = 4
   config.sort_order = 'desc'
@@ -22,10 +25,10 @@ ActiveAdmin.register Product do
       row :name
       row :description
       row :price
-      row :image do |prodcut|
+      row :image do
         image_tag product.image(:medium), class: 'admin-thumbnail'
       end
-      row :image_urls do |product|
+      row :image_urls do
         columns do
           column do
             link_to "Original: #{product.image}", product.image.url
@@ -42,6 +45,7 @@ ActiveAdmin.register Product do
       row :created_at
       row :updated_at
     end
+    active_admin_comments
   end
 
   form do |f|
