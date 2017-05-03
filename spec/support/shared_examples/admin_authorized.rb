@@ -1,4 +1,8 @@
 # frozen_string_literal: true
+
+require 'spec_helper'
+require 'devise'
+
 RSpec.shared_examples 'admin_authorized' do
   context 'when user is not logged in' do
     it 'is unauthorized and returns error message' do
