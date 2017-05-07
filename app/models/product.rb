@@ -9,7 +9,8 @@ class Product < ApplicationRecord
   validates :price, numericality: { greater_than_or_equal_to: 1.0 }
 
   has_many :cart_items, dependent: :destroy
-  has_many :categories
+  has_many :categorizations
+  has_many :categories, through: :categorizations
 
   def delete_image
     image.destroy
