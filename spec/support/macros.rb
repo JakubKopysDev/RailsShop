@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-module ControllerMacros
+module Macros
   def login_admin
     before do
       @request.env['devise.mapping'] = Devise.mappings[:admin_user]
-      sign_in FactoryGirl.create(:admin_user) # Using factory girl as an example
+      admin = FactoryGirl.create(:admin_user)
+      sign_in admin
     end
   end
 

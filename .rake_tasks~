@@ -39,6 +39,8 @@ paperclip:refresh:missing_styles
 paperclip:refresh:thumbnails
 restart
 routes
+rubocop
+rubocop:auto_correct
 secret
 spec
 spec:controllers

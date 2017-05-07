@@ -23,7 +23,7 @@ gem 'activeadmin'
 gem 'aws-sdk', '~> 2.3.0'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'bootstrap-will_paginate', '~> 1.0'
-gem 'cancan'
+gem 'cancancan', '~> 1.16'
 gem 'devise', '~> 4.2', '>= 4.2.1'
 gem 'paperclip', '~> 5.0.0'
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
@@ -32,7 +32,7 @@ group :development, :test do
   gem 'brakeman', require: false
   gem 'byebug', platform: :mri
   gem 'factory_girl_rails'
-  gem 'ffaker'
+  gem 'faker'
   gem 'pry-rails', '~> 0.3.5'
   gem 'rspec-rails', '~> 3.5'
   gem 'rubocop', require: false
@@ -47,6 +47,11 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
+end
+
+group :test do
+  gem 'rails-controller-testing'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

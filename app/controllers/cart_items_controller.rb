@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CartItemsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @cart = Cart.find_by(user: current_user)
     product = Product.find(params[:product_id])

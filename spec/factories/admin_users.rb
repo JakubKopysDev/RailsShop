@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :admin_user do
-    email { FFaker::Internet.email }
-    password { FFaker::Lorem.word }
+    email { Faker::Internet.email }
+    password { Faker::Lorem.characters(rand(6..20)) }
   end
 end
