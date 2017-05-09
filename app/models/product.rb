@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   validates :name, length: { in: 4..25 }, uniqueness: true
   validates :description, length: { in: 4..500 }
   validates :price, numericality: { greater_than_or_equal_to: 1.0 }
+  validate :validate_categories
 
   has_many :cart_items, dependent: :destroy
   has_many :categorizations
@@ -16,5 +17,12 @@ class Product < ApplicationRecord
     image.destroy
     self.image = nil
     save
+  end
+
+  private
+
+  def validate_categories
+    message = 'too many (You can only select 3)'
+    errors.add(:categories, message) if categories.size > 3
   end
 end

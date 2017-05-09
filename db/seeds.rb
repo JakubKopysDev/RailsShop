@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 def seed_image(file_name)
-  File.open(Rails.root.join("/public/images/seed/#{file_name}"))
+  File.open(Rails.root.join('public', 'images', 'seed', file_name))
 end
 
 User.create(name: 'Jakub',

@@ -31,6 +31,15 @@
     width: 100%;
     text-overflow: ellipsis;
   }
+  a.small-link {
+    font-size: 12px;
+    text-decoration: underline;
+  }
+  .categories-links {
+    position: absolute;
+    left:    10px;
+    bottom:   10px;
+  }
   .btn-add-to-cart {
     position: absolute;
     right:    10px;

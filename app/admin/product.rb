@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Product do
-  permit_params :name, :description, :price, :image
+  permit_params :name, :description, :price, :image, category_ids: []
   menu priority: 2
 
   config.per_page = 4
@@ -16,6 +16,9 @@ ActiveAdmin.register Product do
     column :image do |product|
       image_tag product.image(:medium), class: 'admin-thumbnail'
     end
+    column :categories do |product|
+      product.categories.pluck(:name).join(', ')
+    end
     column :created_at
     actions
   end
@@ -25,6 +28,9 @@ ActiveAdmin.register Product do
       row :name
       row :description
       row :price
+      row :categories do
+        product.categories.pluck(:name).join(', ')
+      end
       row :image do
         image_tag product.image(:medium), class: 'admin-thumbnail'
       end
@@ -50,10 +56,13 @@ ActiveAdmin.register Product do
 
   form do |f|
     f.inputs 'Product data' do
+      categories_collection = Category.all.collect { |c| [c.name, c.id] }
+
       f.input :name
       f.input :description
       f.input :price
       f.input :image
+      f.input :categories, collection: categories_collection, as: :select
     end
     f.actions
   end
@@ -61,6 +70,7 @@ ActiveAdmin.register Product do
   filter :id
   filter :name
   filter :description
+  filter :categories
   filter :price
   filter :created_at
 end
