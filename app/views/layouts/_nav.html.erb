@@ -5,15 +5,39 @@
       <a class="navbar-brand" href="#">ToDo</a>
     </div>
     <ul class="nav navbar-nav navbar-right">
-      <li class="active"><%= link_to 'Home', root_path %></li>
       <% if !user_signed_in? %>
-        <li><%= link_to 'Login', new_user_session_path %></li>
-        <li><%= link_to 'Register', new_user_registration_path %></li>
+        <li>
+          <%= link_to new_user_session_path do %>
+            Sign In <i class="fa fa-sign-in fa-lg" aria-hidden="true"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to new_user_registration_path do %>
+            Register <i class="fa fa-user-plus fa-lg" aria-hidden="true"></i>
+          <% end %>
+        </li>
       <% else %>
-        <li><%= link_to 'Products', products_path %> </li>
-        <li><%= link_to "My Cart (#{current_user.cart_items.count})", cart_path %></li>
-        <li><%= link_to 'My Account', edit_user_registration_path %></li>
-        <li><%= link_to 'Logout', destroy_user_session_path, method: 'DELETE' %></li>
+        <li>
+          <%= link_to products_path do %>
+            Home <i class="fa fa-home fa-lg" aria-hidden="true"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to cart_path do %>
+            Cart <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
+            <span class="label label-pill label-info"><%= current_user.cart_items.count %></span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to edit_user_registration_path do %>
+            My Account <i class="fa fa-user fa-lg" aria-hidden="true"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to destroy_user_session_path, method: 'DELETE' do %>
+            Sign out <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
+          <% end %>
+        </li>
       <% end %>
     </ul>
   </div>

@@ -5,6 +5,7 @@
 */
 
 @import "bootstrap";
+@import "font-awesome";
 
 #alerts {
   position: fixed;
@@ -55,4 +56,10 @@ div.pagination {
   text-align: center;
   display: block;
   margin: 0 auto;
+}
+
+.label-pill {
+  padding-right: .7em;
+  padding-left: .7em;
+  border-radius: 1rem;
 }
