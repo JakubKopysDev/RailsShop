@@ -2,6 +2,7 @@
 
 class CartItemsController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   def create
     @cart = Cart.find_by(user: current_user)

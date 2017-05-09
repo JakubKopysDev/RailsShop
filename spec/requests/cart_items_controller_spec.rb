@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'cancan/matchers'
 
 RSpec.describe CartItemsController, type: :request do
   context 'POST #create' do
@@ -45,9 +46,26 @@ RSpec.describe CartItemsController, type: :request do
       before { sign_in user }
       it 'destroys cart item' do
         cart_item = FactoryGirl.create :cart_item, cart: cart, product: product
+
         expect do
           delete "/cart_items/#{cart_item.id}"
         end.to change(CartItem, :count).by(-1)
+      end
+
+      context 'on not owned item' do
+        before { sign_in user }
+        it 'does not destroy item and is redirected' do
+          other_user = FactoryGirl.create :user
+          other_cart = FactoryGirl.create :cart, user: other_user
+          cart_item  = FactoryGirl.create :cart_item,
+                                          cart: other_cart, product: product
+
+          expect do
+            delete "/cart_items/#{cart_item.id}"
+          end.not_to change(CartItem, :count)
+
+          expect(response).to redirect_to(root_url)
+        end
       end
     end
   end
