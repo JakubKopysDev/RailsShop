@@ -12,7 +12,7 @@ class CartItemsController < ApplicationController
 
     @cart_item = @cart.cart_items.create!(product: product)
 
-    redirect_to products_path
+    redirect_to :back
   end
 
   def destroy

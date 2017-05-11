@@ -25,8 +25,10 @@ gem 'aws-sdk', '~> 2.3.0'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'bootstrap-will_paginate', '~> 1.0'
 gem 'cancancan', '~> 1.16'
+gem 'country_select', '~> 3.0'
 gem 'devise', '~> 4.2', '>= 4.2.1'
 gem 'paperclip', '~> 5.0.0'
+gem 'validates_zipcode', '~> 0.0.17'
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
 
 group :development, :test do

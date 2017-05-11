@@ -63,3 +63,19 @@ div.pagination {
   padding-left: .7em;
   border-radius: 1rem;
 }
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+.panel-credit-card {
+  .panel-body {
+    display: none;
+  }
+}
+
+.control-group.has-error {
+  input {
+    margin-top: -20px;
+  }
+}

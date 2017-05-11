@@ -19,5 +19,8 @@ Rails.application.routes.draw do
   authenticate :user do
     get :cart, to: 'carts#show'
     resources :cart_items, only: %i[create destroy]
+
+    get :profile, to: 'users#profile'
+    put :update_profile, to: 'users#update_profile'
   end
 end

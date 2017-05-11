@@ -1,15 +1,27 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  COUNTRY_CODES = ISO3166::Country.codes
+
+  has_one :cart, dependent: :destroy
+  has_many :cart_items, through: :cart
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          authentication_keys: [:login]
+
   validates :name, length: { in: 4..25 }, uniqueness: true
+  validates :country, allow_blank: true, inclusion:
+  { in: COUNTRY_CODES, message: '%{value} is not a valid Country Code' }
+  validates :city, :street, length: { in: 3..50 }, allow_blank: true
+  validates :post_code, zipcode: { country_code_attribute: :country },
+                        allow_blank: true
+  validates :phone_number, format: { with: /(?:\+?|\b)[0-9]{10}\b/ },
+                           length: { in: 12..15 }, allow_blank: true
+  validates :credit_card_number, length: { in: 9..25 }, allow_blank: true
+  validates :credit_card_sec, length: { is: 3 }, allow_blank: true
+
   attr_accessor :login
-  has_one :cart, dependent: :destroy
-  has_many :cart_items, through: :cart
 
   # overwrite Devise authentication - allow login using email or name
   def self.find_for_database_authentication(warden_conditions)
