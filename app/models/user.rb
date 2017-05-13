@@ -3,6 +3,8 @@
 class User < ApplicationRecord
   COUNTRY_CODES = ISO3166::Country.codes
 
+  mount_uploader :avatar, AvatarUploader
+
   has_one :cart, dependent: :destroy
   has_many :cart_items, through: :cart
 
@@ -20,6 +22,8 @@ class User < ApplicationRecord
                            length: { in: 12..15 }, allow_blank: true
   validates :credit_card_number, length: { in: 9..25 }, allow_blank: true
   validates :credit_card_sec, length: { is: 3 }, allow_blank: true
+  validates_integrity_of  :avatar
+  validates_processing_of :avatar
 
   attr_accessor :login
 

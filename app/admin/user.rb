@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register User do
-  permit_params :email, :name, :password, :password_confirmation
+  permit_params :email, :name, :password, :password_confirmation, :country,
+                :city, :street, :post_code, :phone_number, :avatar,
+                :credit_card_number, :credit_card_sec, :exp_date
   menu priority: 1
 
   index do
@@ -9,7 +11,20 @@ ActiveAdmin.register User do
     column :id
     column :name
     column :email
-    actions
+    column :phone_number
+    column :country
+    column :city
+    column :street
+    column :post_code
+    column 'Billing' do |user|
+      span do
+        "#{user.credit_card_number} #{user.credit_card_sec} #{user.exp_date}"
+      end
+    end
+    actions defaults: false, dropdown: true do |user|
+      item 'View', admin_user_path(user)
+      item 'Delete', admin_user_path(user), method: :delete
+    end
   end
 
   form do |f|

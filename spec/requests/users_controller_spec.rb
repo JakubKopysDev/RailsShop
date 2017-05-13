@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :request do
-  let(:user) { user = FactoryGirl.create :user }
+  let(:user) { FactoryGirl.create :user }
 
   describe 'GET #profile' do
     context 'as a guest' do

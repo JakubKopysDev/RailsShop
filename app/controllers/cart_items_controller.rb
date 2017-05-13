@@ -12,7 +12,7 @@ class CartItemsController < ApplicationController
 
     @cart_item = @cart.cart_items.create!(product: product)
 
-    redirect_to :back
+    redirect_back fallback_location: products_path
   end
 
   def destroy
