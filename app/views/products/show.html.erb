@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="card col-md-10 col-md-offset-1">
+    <div class="container-fluid">
+      <div class="wrapper row-">
+        <div class="preview col-md-6">
+
+          <div class="preview-pic tab-content">
+            <div class="tab-pane active" id="pic-1">
+              <%= image_tag @product.image.url %>
+            </div>
+            <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+            <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+            <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+            <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+          </div>
+
+          <ul class="preview-thumbnail nav nav-tabs">
+            <li class="active"><a data-target="#pic-1" data-toggle="tab"><%= image_tag @product.image.url %></a></li>
+            <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+            <li><a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+            <li><a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+            <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+          </ul>
+
+        </div>
+
+        <div class="details col-md-6">
+          <h3 class="product-title">
+            <%= @product.name %>
+          </h3>
+          <div class="rating">
+            <div class="stars">
+              <%= select_tag :product, options_for_select(1..5, 3), class: 'avg-rating', 'data-rating-cache': @product.rating_cache %>
+            </div>
+            <span class="review-no">
+              <%= pluralize(@product.review_count, 'review') %>
+            </span>
+          </div>
+          <p class="product-description">
+            <%= @product.description %>
+          </p>
+          <h4 class="price">
+            current price: <span><%= @product.price %> $</span>
+          </h4>
+          <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+          <!-- <h5 class="sizes">sizes:
+            <span class="size" data-toggle="tooltip" title="small">s</span>
+            <span class="size" data-toggle="tooltip" title="medium">m</span>
+            <span class="size" data-toggle="tooltip" title="large">l</span>
+            <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
+          </h5>
+          <h5 class="colors">colors:
+            <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
+            <span class="color green"></span>
+            <span class="color blue"></span>
+          </h5> -->
+          <div class="action">
+            <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+            <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="row col-md-6 col-md-offset-3 product-reviews">
+      <%= form_for Review.new, url: product_reviews_path(@product), method: :post  do |f| %>
+        <div class="form-group">
+          <%= f.text_area :comment, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.select :rating, 1..5, id: 'review_rating' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit 'Add Review', class: 'form-control btn btn-info' %>
+        </div>
+      <% end %>
+
+      <% @reviews.each do |review| %>
+        <%= render review %>
+      <% end %>
+  </div>
+</div>

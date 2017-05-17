@@ -14,9 +14,9 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require select2-full
+//= require jquery.barrating.min.js
 //= require turbolinks
 //= require_tree .
-
 
 $(document).ready(function() {
   enableBootstrapTooltips();

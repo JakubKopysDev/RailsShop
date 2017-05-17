@@ -1,0 +1,20 @@
+<div class="media review">
+  <div class="media-left">
+    <!-- TODO: link to users show page (add users show page first lol) -->
+    <%= link_to '#' do %>
+      <%= image_tag review.user.avatar.url(:thumb), class: "media-object", size: "50x50" %>
+    <% end %>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading"><%= review.user.name %></h4>
+    <p><%= review.comment %></p>
+  </div>
+  <div class="media-right">
+    <%= select_tag :review, options_for_select(1..5, review.rating), class: 'review-rate' %>
+    <% if review.user.eql?(current_user) %>
+      <%= link_to review_path(review), method: :delete, class: 'btn btn-xs btn-warning pull-right', data: {'toggle': 'tooltip', 'placement': 'right', 'confirm': 'Are you sure?'}, title: 'Delete review' do %>
+        <i class="fa fa-times" aria-hidden="true"></i>
+      <% end %>
+    <% end %>
+  </div>
+</div>

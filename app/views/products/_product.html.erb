@@ -1,7 +1,7 @@
 <%# frozen_string_literal: true %>
 <div class="col-sm-4 product">
   <div class="thumbnail" >
-    <%= link_to '#' do %>
+    <%= link_to product_path(product) do %>
         <%= image_tag product.image.url(:medium), class: 'product-thumbnail' %>
         <div class="row product-header">
           <div class="col-sm-8">

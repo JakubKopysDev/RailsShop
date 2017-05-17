@@ -1,13 +1,14 @@
 /*
   *= require select2
   *= require select2-bootstrap
+  *= require fontawesome-stars
+  *= require fontawesome-stars-o
   *= require_self
-  *= require_tree .
 */
 
 @import "bootstrap";
 @import "font-awesome";
-@import "products.scss"
+@import "products.scss";
 
 #alerts {
   position: fixed;

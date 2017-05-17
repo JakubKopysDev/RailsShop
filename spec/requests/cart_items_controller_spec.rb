@@ -41,7 +41,6 @@ RSpec.describe CartItemsController, type: :request do
       end
     end
 
-    # TODO: test if user can delete other users cart items
     context 'as logged in user' do
       before { sign_in user }
       it 'destroys cart item' do
@@ -53,7 +52,6 @@ RSpec.describe CartItemsController, type: :request do
       end
 
       context 'on not owned item' do
-        before { sign_in user }
         it 'does not destroy item and is redirected' do
           other_user = FactoryGirl.create :user
           other_cart = FactoryGirl.create :cart, user: other_user
