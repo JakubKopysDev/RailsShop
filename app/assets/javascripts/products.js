@@ -1,7 +1,9 @@
 function ready() {
-  $('#review_rating').barrating({
-    theme: 'fontawesome-stars',
-    hoverState: true
+  $('#review_rating, .modal-review-rating').each(function() {
+    $(this).barrating({
+      theme: 'fontawesome-stars',
+      hoverState: true
+    });
   });
 
   $('.review-rate').barrating({
@@ -13,7 +15,7 @@ function ready() {
     theme: 'fontawesome-stars-o',
     readonly: true,
     initialRating: $('.avg-rating').data('rating-cache')
-  })
+  });
 }
 
 $(document).ready(ready);

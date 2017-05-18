@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
     resources :cart_items, only: %i[create destroy]
     resources :products, only: %i[] do
-      resources :reviews, only: %i[create destroy], shallow: true
+      resources :reviews, only: %i[create destroy update], shallow: true
     end
   end
 end
