@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Product do
-  permit_params :name, :description, :price, :image, category_ids: []
+  permit_params(
+    :name,
+    :description,
+    :price,
+    category_ids: [],
+    pictures_attributes: %i[id file _destroy]
+  )
+
   menu priority: 2
 
   config.per_page = 4
@@ -13,9 +20,6 @@ ActiveAdmin.register Product do
     column :name
     column :description
     column :price
-    column :image do |product|
-      image_tag product.image(:medium), class: 'admin-thumbnail'
-    end
     column :categories do |product|
       product.categories.pluck(:name).join(', ')
     end
@@ -31,23 +35,6 @@ ActiveAdmin.register Product do
       row :categories do
         product.categories.pluck(:name).join(', ')
       end
-      row :image do
-        image_tag product.image(:medium), class: 'admin-thumbnail'
-      end
-      row :image_urls do
-        columns do
-          column do
-            link_to "Original: #{product.image}", product.image.url
-          end
-          column do
-            link_to "Medium: #{product.image(:medium)}", product.image(:medium)
-          end
-        end
-      end
-      row :image_file_name
-      row :image_content_type
-      row :image_file_size
-      row :image_updated_at
       row :created_at
       row :updated_at
     end
@@ -61,10 +48,26 @@ ActiveAdmin.register Product do
       f.input :name
       f.input :description
       f.input :price
-      f.input :image
+      f.inputs do
+        f.has_many :pictures, allow_destroy: true do |a|
+          a.input :file
+        end
+      end
       f.input :categories, collection: categories_collection, as: :select
     end
     f.actions
+  end
+
+  controller do
+    def create
+      @product = Product.new(permitted_params[:product])
+
+      if @product.save
+        redirect_to admin_products_path
+      else
+        render :new
+      end
+    end
   end
 
   filter :id

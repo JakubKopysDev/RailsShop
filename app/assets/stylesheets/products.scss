@@ -211,10 +211,15 @@ body {
 
 //////////////
 
+.review-rate-select {
+  margin-bottom: 5px;
+}
+
 .product-reviews {
   margin-top: 50px;
   margin-bottom: 50px;
   form {
+    margin-bottom: 30px;
     textarea {
       resize: none;
     }

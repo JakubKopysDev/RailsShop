@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516193345) do
+ActiveRecord::Schema.define(version: 20170518185539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,18 +74,22 @@ ActiveRecord::Schema.define(version: 20170516193345) do
     t.integer "product_id"
   end
 
+  create_table "pictures", force: :cascade do |t|
+    t.integer  "product_id", null: false
+    t.string   "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_pictures_on_product_id", using: :btree
+  end
+
   create_table "products", force: :cascade do |t|
-    t.string   "name",                             null: false
-    t.text     "description",                      null: false
-    t.float    "price",                            null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.float    "rating_cache",       default: 3.0, null: false
-    t.integer  "review_count",       default: 0,   null: false
+    t.string   "name",                       null: false
+    t.text     "description",                null: false
+    t.float    "price",                      null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.float    "rating_cache", default: 3.0, null: false
+    t.integer  "review_count", default: 0,   null: false
     t.index ["name"], name: "index_products_on_name", unique: true, using: :btree
   end
 
@@ -131,6 +135,7 @@ ActiveRecord::Schema.define(version: 20170516193345) do
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "products"
   add_foreign_key "carts", "users"
+  add_foreign_key "pictures", "products"
   add_foreign_key "reviews", "products"
   add_foreign_key "reviews", "users"
 end

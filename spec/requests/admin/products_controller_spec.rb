@@ -41,7 +41,7 @@ RSpec.describe Admin::ProductsController do
     context 'as logged in admin' do
       before { sign_in FactoryGirl.create :admin_user }
       context 'with valid params' do
-        it 'is success and creates new product' do
+        it 'creates new product with default picture' do
           params = {
             name: product.name,
             description: product.description,
@@ -51,12 +51,18 @@ RSpec.describe Admin::ProductsController do
 
           expect do
             post '/admin/products', params: { product: params }
-          end.to change(Product, :count).by 1
+          end.to change(Product, :count).by(1)
+            .and change(Picture, :count).by(1)
 
-          expect(response).to redirect_to(admin_product_path(assigns(:product)))
+          product_picture = Product.last.pictures.last
+          newest_picture = Picture.last
+
+          expect(product_picture).to eq(newest_picture)
+
+          expect(response).to redirect_to(admin_products_path)
           follow_redirect!
 
-          expect(response).to render_template(:show)
+          expect(response).to render_template(:index)
         end
       end
 
@@ -105,6 +111,55 @@ RSpec.describe Admin::ProductsController do
           end.not_to change(Product, :count)
           expect(response.body).to include('too many', 'error')
         end
+      end
+
+      context 'with pictures' do
+        let(:file) { fixture_file_upload(Rails.root.join('spec', 'support', 'images', 'default.png'), 'image/png') }
+
+        context 'that are valid' do
+          it 'creates product with pictures' do
+            params = {
+              name: product.name,
+              description: product.description,
+              price: product.price,
+              category_ids: categories.take(3).pluck(:id),
+              pictures_attributes: [
+                { file: file },
+                { file: file },
+                { file: file }
+              ]
+            }
+
+            expect do
+              post '/admin/products', params: { product: params }
+            end.to change(Product, :count).by(1)
+              .and change(Picture, :count).by(3)
+          end
+        end
+
+        context 'that exceed valid count' do
+          it 'does not create any products nor pictures' do
+            params = {
+              name: product.name,
+              description: product.description,
+              price: product.price,
+              category_ids: categories.take(3).pluck(:id),
+              pictures_attributes: [
+                { file: file },
+                { file: file },
+                { file: file },
+                { file: file },
+                { file: file },
+                { file: file }
+              ]
+            }
+
+            expect do
+              post '/admin/products', params: { product: params }
+            end.to change(Product, :count).by(0)
+              .and change(Picture, :count).by(0)
+          end
+      end
       end
     end
   end

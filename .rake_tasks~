@@ -1,3 +1,4 @@
+pictures
 about
 app:template
 app:update
@@ -37,15 +38,15 @@ paperclip:refresh
 paperclip:refresh:metadata
 paperclip:refresh:missing_styles
 paperclip:refresh:thumbnails
+pictures:reprocess_files
 restart
 routes
 rubocop
 rubocop:auto_correct
 secret
 spec
-spec:controllers
-spec:helpers
 spec:models
+spec:requests
 stats
 test
 test:db

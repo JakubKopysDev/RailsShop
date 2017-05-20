@@ -13,26 +13,32 @@ users << User.create(name: 'Jakub', email: 'foo@bar.com', password: 'foobar')
 end
 
 10.times do
-  product = Product.create(
-    name: Faker::Lorem.unique.words(rand(3) + 1).join(' '),
-    description: Faker::Lorem.paragraph(3, false, 2),
-    price: Faker::Number.between(10, 1000) / 10.0
-  )
+  product = FactoryGirl.create :product
   3.times do
     FactoryGirl.create :review, product: product, user: users.sample
   end
 end
 
-3.times do |n|
-  product = Product.create(
-    name: Faker::Lorem.unique.words(rand(3) + 1).join(' '),
-    description: Faker::Lorem.paragraph(3, false, 2),
-    price: Faker::Number.between(10, 1000) / 10.0,
-    image: seed_image("prod#{n + 1}.png")
-  )
+3.times do
+  product = FactoryGirl.create :product_with_pictures
   3.times do
     FactoryGirl.create :review, product: product, user: users.sample
   end
+end
+
+3.times do
+  Product.create!(
+    name: Faker::Commerce.unique.product_name[0..24],
+    description: Faker::Lorem.sentences(rand(1..3)).join(' '),
+    price: Faker::Number.between(10, 1000) / 10.0,
+    pictures_attributes: [
+      { file: seed_image('prod1.png') },
+      { file: seed_image('prod2.png') },
+      { file: seed_image('prod3.png') },
+      { file: seed_image('prod4.png') },
+      { file: seed_image('prod5.png') }
+    ]
+  )
 end
 
 AdminUser.create!(email: 'admin@example.com',

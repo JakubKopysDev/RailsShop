@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 # encoding: utf-8
 
-class AvatarUploader < CarrierWave::Uploader::Base
+class FileUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   storage :file
@@ -10,8 +10,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  version :thumb do
-    process resize_to_fill: [200, 200]
+  version :medium do
+    process resize_to_fill: [320, 180]
   end
 
   def extension_white_list
@@ -19,6 +19,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def default_url(*)
-    '/images/fallback/' + [version_name, 'default_avatar.png'].compact.join('_')
+    '/images/fallback/' + [version_name, 'default_file.png'].compact.join('_')
   end
 end

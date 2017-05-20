@@ -12,6 +12,6 @@ namespace :categories do
       Category.create!(name: category)
     end
 
-    p "Created #{Category.count} categories."
+    puts "Created #{Category.count} categories."
   end
 end
