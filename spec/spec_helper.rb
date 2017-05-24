@@ -10,9 +10,17 @@ RSpec.configure do |config|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
 
+  # Clean up uploaded files after tests
+  config.after(:each) do
+    if Rails.env.test? || Rails.env.cucumber?
+      FileUtils.rm_rf(Dir["#{Rails.root}/spec/support/uploads"])
+    end
+  end
+
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
   end
+
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   config.include FactoryGirl::Syntax::Methods

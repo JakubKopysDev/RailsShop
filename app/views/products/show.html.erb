@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="card col-md-10 col-md-offset-1">
+    <div class="container-fluid">
+      <div class="wrapper row-">
+        <div class="preview col-md-6">
+
+          <div class="preview-pic tab-content">
+            <% @product.images.each.with_index(1) do |image, i| %>
+              <div class="tab-pane <%= i==1 ? 'active' : '' %>" id="pic-<%=i%>">
+                <%= image_tag image.url, size: "400x252" %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="table">
+            <ul class="preview-thumbnail nav nav-tabs">
+              <% @product.images.each.with_index(1) do |image, i| %>
+                <li class="<%= i==1 ? 'active' : '' %>">
+                  <a data-target="#pic-<%=i%>" data-toggle="tab">
+                    <%= image_tag image.url, size: "200x126" %>
+                  </a>
+                </li>
+              <% end %>
+            </ul>  
+          </div>
+
+
+        </div>
+
+        <div class="details col-md-6">
+          <h3 class="product-title">
+            <%= @product.name %>
+          </h3>
+          <div class="rating">
+            <div class="stars">
+              <%= select_tag :product, options_for_select(1..5, 3), class: 'avg-rating', 'data-rating-cache': @product.rating_cache %>
+            </div>
+            <span class="review-no">
+              <%= pluralize(@product.review_count, 'review') %>
+            </span>
+          </div>
+          <p class="product-description">
+            <%= @product.description %>
+          </p>
+          <h4 class="price">
+            current price: <span><%= @product.price %> $</span>
+          </h4>
+          <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+          <!-- <h5 class="sizes">sizes:
+            <span class="size" data-toggle="tooltip" title="small">s</span>
+            <span class="size" data-toggle="tooltip" title="medium">m</span>
+            <span class="size" data-toggle="tooltip" title="large">l</span>
+            <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
+          </h5>
+          <h5 class="colors">colors:
+            <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
+            <span class="color green"></span>
+            <span class="color blue"></span>
+          </h5> -->
+          <div class="action">
+            <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+            <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="row col-md-6 col-md-offset-3 product-reviews">
+      <%= form_for Review.new, url: product_reviews_path(@product), method: :post  do |f| %>
+        <div class="form-group">
+          <%= f.text_area :comment, class: 'form-control' %>
+        </div>
+
+        <div class="form-group review-rate-select">
+          <%= f.select :rating, 1..5 %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit 'Add Review', class: 'form-control btn btn-info' %>
+        </div>
+      <% end %>
+
+      <% @reviews.each do |review| %>
+        <%= render review %>
+      <% end %>
+
+      <%= will_paginate @reviews %>
+  </div>
+</div>

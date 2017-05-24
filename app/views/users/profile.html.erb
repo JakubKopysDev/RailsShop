@@ -1,0 +1,68 @@
+<div class="container profile">
+  <div class="col-sm-6 col-sm-offset-3">
+    <div class="panel panel-default panel-body">
+      <h3>Edit Contact Info</h3>
+
+      <%= form_for(resource, as: resource_name, url: update_profile_path(resource), html: { method: :put }) do |f| %>
+
+
+          <div class="field form-group">
+            <%= f.label :country, class: 'control-label' %>
+            <!-- <%= f.text_field :country, class: 'form-control' %> -->
+            <%= f.country_select :country, { selected: resource.country, include_blank: 'Select a Country' }, { class: 'form-control' } %>
+          </div>
+
+          <div class="field form-group">
+            <%= f.label :city, class: 'control-label' %><br />
+            <%= f.text_field :city, class: 'form-control' %>
+          </div>
+
+          <div class="field form-group">
+            <%= f.label :street, class: 'control-label' %><br />
+            <%= f.text_field :street, autocomplete: 'off', class: 'form-control' %>
+          </div>
+
+          <div class="field form-group">
+            <%= f.label :post_code, class: 'control-label' %><br />
+            <%= f.text_field :post_code, class: 'form-control' %>
+          </div>
+
+          <div class="field form-group">
+            <%= f.label :phone_number, class: 'control-label' %><br />
+            <%= f.text_field :phone_number, class: 'form-control' %>
+            <span class="help-block">For example +48531969029</span>
+          </div>
+
+          <div class="panel panel-warning panel-credit-card panel-collapsed">
+            <div class="panel-heading clickable" data-toggle="tooltip"
+            data-placement="right" title="Careful! Sensitive data">
+              <h3 class="panel-title">
+                Credit Card Info
+                <i class="fa fa-chevron-down pull-right" aria-hidden="true"></i>
+              </h3>
+            </div>
+            <div class="panel-body">
+              <div class="field form-group">
+                <%= f.label :credit_card_number, class: 'control-label' %><br />
+                <%= f.text_field :credit_card_number, class: 'form-control' %>
+              </div>
+
+              <div class="field form-group">
+                <%= f.label 'Security Code',class: 'control-label' %><br />
+                <%= f.text_field :credit_card_sec, class: 'form-control' %>
+              </div>
+
+              <div class="field form-group">
+                <%= f.label 'Expiry Date', class: 'control-label' %><br />
+                <%= f.text_field :exp_date, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+
+          <div class="actions form-group">
+            <%= f.submit 'Update', class: 'btn btn-success pull-right' %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

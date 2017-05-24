@@ -10,7 +10,9 @@ end
 gem 'pg', '~> 0.18'
 gem 'rails', '~> 5.0.2'
 
+# Frontend gems
 gem 'coffee-rails', '~> 4.2'
+gem 'country_select', '~> 3.0'
 gem 'font-awesome-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
@@ -20,13 +22,17 @@ gem 'select2-rails'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 
+# Backend gems
 gem 'activeadmin'
 gem 'aws-sdk', '~> 2.3.0'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'bootstrap-will_paginate', '~> 1.0'
 gem 'cancancan', '~> 1.16'
+gem 'carrierwave', '~> 0.10.0'
 gem 'devise', '~> 4.2', '>= 4.2.1'
+gem 'mini_magick', '~> 4.3'
 gem 'paperclip', '~> 5.0.0'
+gem 'validates_zipcode', '~> 0.0.17'
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
 
 group :development, :test do

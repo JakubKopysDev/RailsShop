@@ -15,9 +15,14 @@ Rails.application.routes.draw do
   end
 
   resources :products, only: %i[index show]
-
   authenticate :user do
-    get :cart, to: 'carts#show'
+    get :cart,            to: 'carts#show'
+    get :profile,         to: 'users#profile'
+    put :update_profile,  to: 'users#update_profile'
+
     resources :cart_items, only: %i[create destroy]
+    resources :products, only: %i[] do
+      resources :reviews, only: %i[create destroy update], shallow: true
+    end
   end
 end

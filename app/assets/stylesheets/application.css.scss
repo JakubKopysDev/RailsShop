@@ -1,0 +1,85 @@
+/*
+  *= require select2
+  *= require select2-bootstrap
+  *= require fontawesome-stars
+  *= require fontawesome-stars-o
+  *= require_self
+*/
+
+@import "bootstrap";
+@import "font-awesome";
+@import "products.scss";
+@import "reviews.scss";
+
+#alerts {
+  position: fixed;
+  z-index: 1;
+}
+
+.product-form {
+  textarea#product_description {
+    resize: vertical;
+    max-height: 250px;
+  }
+}
+
+.thumbnail {
+  position: relative;
+  height: 350px;
+  .product-thumbnail {
+    height: 150px;
+    width: 100%;
+  }
+  .description {
+    height: 85px;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+  }
+  a.small-link {
+    font-size: 12px;
+    text-decoration: underline;
+  }
+  .categories-links {
+    position: absolute;
+    left:    10px;
+    bottom:   10px;
+  }
+  .btn-add-to-cart {
+    position: absolute;
+    right:    10px;
+    bottom:   10px;
+  }
+  .btn-edit-product {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
+}
+div.pagination {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}
+
+.label-pill {
+  padding-right: .7em;
+  padding-left: .7em;
+  border-radius: 1rem;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+.panel-credit-card {
+  .panel-body {
+    display: none;
+  }
+}
+
+.control-group.has-error {
+  input {
+    margin-top: -20px;
+  }
+}

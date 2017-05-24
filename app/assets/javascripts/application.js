@@ -14,30 +14,23 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require select2-full
+//= require jquery.barrating.min.js
 //= require turbolinks
 //= require_tree .
 
-
 $(document).ready(function() {
-    var $alerts = $('#alerts');
-    if ($alerts.length) {
-        centerAbsoluteElement($alerts);
-        hideAlertAfterDelay($alerts, 5000);
-    }
+  enableBootstrapTooltips();
 
-    // $('#ajax-example').select2({
-    //   ajax: {
-    //     url: "/products",
-    //     dataType: 'json',
-    //     quietMillis: 500,
-    //     processResults: function(data, page) {
-    //       return {
-    //         results: data
-    //       };
-    //     }
-    //   }
-    // });
+  var $alerts = $('#alerts');
+  if ($alerts.length) {
+      centerAbsoluteElement($alerts);
+      hideAlertAfterDelay($alerts, 5000);
+  }
 });
+
+function enableBootstrapTooltips() {
+  $('[data-toggle="tooltip"]').tooltip();
+}
 
 function centerAbsoluteElement(element) {
     var width = element.css('width');
@@ -54,4 +47,29 @@ function hideAlertAfterDelay(element, delay) {
     element.delay(delay).fadeOut(200, function() {
         $(this).alert('close');
     });
+}
+
+$(document).on('click', '.profile .panel-heading.clickable', function(e) {
+  var $panel = $(this).closest('.panel');
+  togglePanel($panel);
+});
+
+function togglePanel(panel) {
+  if (!panel.hasClass('panel-collapsed')) {
+    hidePanel(panel);
+  } else {
+    showPanel(panel);
+  }
+}
+
+function hidePanel(panel) {
+  panel.find('.panel-body').slideUp();
+  panel.addClass('panel-collapsed');
+  panel.find('i').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+}
+
+function showPanel(panel) {
+  panel.find('.panel-body').slideDown();
+  panel.removeClass('panel-collapsed');
+  panel.find('i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
 }

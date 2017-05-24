@@ -1,11 +1,13 @@
 /*
-*= require select2
-*= require select2-bootstrap
-*= require_self
+  *= require select2
+  *= require select2-bootstrap
+  *= require_self
+  *= require_tree .
 */
 
 @import "bootstrap";
 @import "font-awesome";
+@import "products.scss"
 
 #alerts {
   position: fixed;
@@ -62,4 +64,20 @@ div.pagination {
   padding-right: .7em;
   padding-left: .7em;
   border-radius: 1rem;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+.panel-credit-card {
+  .panel-body {
+    display: none;
+  }
+}
+
+.control-group.has-error {
+  input {
+    margin-top: -20px;
+  }
 }
