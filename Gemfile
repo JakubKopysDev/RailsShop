@@ -11,6 +11,7 @@ gem 'pg', '~> 0.18'
 gem 'rails', '~> 5.0.2'
 
 # Frontend gems
+gem 'active_skin'
 gem 'coffee-rails', '~> 4.2'
 gem 'country_select', '~> 3.0'
 gem 'font-awesome-rails'

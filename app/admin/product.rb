@@ -11,7 +11,6 @@ ActiveAdmin.register Product do
 
   menu priority: 2
 
-  config.per_page = 4
   config.sort_order = 'desc'
 
   index do
