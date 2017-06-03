@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   end
 
   resources :products, only: %i[index show]
+  resources :tickets, only: %i[new create]
+
   authenticate :user do
     get :cart,            to: 'carts#show'
     get :profile,         to: 'users#profile'

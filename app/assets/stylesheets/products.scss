@@ -1,4 +1,4 @@
-// Place all the styles related to the Products controller here.
+im// Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
@@ -236,12 +236,9 @@ body {
   text-align: center;
 }
 
-@media screen and (min-width: 768px) {
-  .modal:before {
-    display: inline-block;
-    vertical-align: middle;
-    content: " ";
-    height: 100%;
+@media (min-width: 768px) {
+  .col-sm-12 {
+    margin: 100px !important;
   }
 }
 

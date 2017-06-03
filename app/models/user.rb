@@ -2,18 +2,21 @@
 
 class User < ApplicationRecord
   COUNTRY_CODES = ISO3166::Country.codes
+  EMAIL_REGEX   = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
   mount_uploader :avatar, AvatarUploader
 
   has_one :cart, dependent: :destroy
   has_many :cart_items, through: :cart
   has_many :reviews, dependent: :destroy
+  has_many :tickets
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          authentication_keys: [:login]
 
   validates :name, length: { in: 4..25 }, uniqueness: true
+  validates :email, format: { with: EMAIL_REGEX }
   validates :country, allow_blank: true, inclusion:
   { in: COUNTRY_CODES, message: '%{value} is not a valid Country Code' }
   validates :city, :street, length: { in: 3..50 }, allow_blank: true

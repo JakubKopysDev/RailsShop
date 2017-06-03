@@ -10,6 +10,52 @@
 @import "font-awesome";
 @import "products.scss";
 @import "reviews.scss";
+@import "custom_bs.scss";
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+@media screen and (max-width: 1007px) {
+  .logo {
+    padding-bottom: 30px;
+    img {
+      float: none !important;
+      display: block;
+      margin: 0 auto !important;
+    }
+  }
+}
+
+.container {
+  margin-top: 100px;
+}
+
+.logo {
+  img {
+    margin-right: 5%;
+    float: right;
+  }
+}
+
+.centered-form {
+  margin-top: 200px;
+  background-color: #fafafa;
+  padding: 40px;
+}
 
 #alerts {
   position: fixed;
@@ -25,15 +71,22 @@
 
 .thumbnail {
   position: relative;
-  height: 350px;
+  // height: 350px;
+  background-color: #fafafa;
+  h3.product-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   .product-thumbnail {
-    height: 150px;
     width: 100%;
+    height: auto;
+    // height: 180px;
+    //@include aspect-ratio(16, 9);
   }
   .description {
-    height: 85px;
+    height: 100px;
     overflow: hidden;
-    width: 100%;
     text-overflow: ellipsis;
   }
   a.small-link {

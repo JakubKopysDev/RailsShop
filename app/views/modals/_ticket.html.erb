@@ -1,0 +1,32 @@
+<div class="modal fade" id="modal-ticket" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Submit Support Ticket</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for Ticket.new, method: :post  do |f| %>
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: 'form-control', required: true, value: default_value(input: :name) %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.email_field :email, class: 'form-control', required: true, value: default_value(input: :email) %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :content %>
+            <%= f.text_area :content, class: 'form-control', required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit 'Submit', class: 'form-control btn btn-info' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

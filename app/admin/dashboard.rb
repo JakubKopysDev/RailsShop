@@ -25,5 +25,20 @@ ActiveAdmin.register_page 'Dashboard' do
         end
       end
     end
+
+    columns do
+      column do
+        panel 'Recent Support TIckets' do
+          ul do
+            Ticket.order(created_at: 'desc').take(5).map do |ticket|
+              li do
+                span link_to(ticket.content, admin_user_path(ticket))
+                span ticket.created_at, style: 'float: right;'
+              end
+            end
+          end
+        end
+      end
+    end
   end
 end

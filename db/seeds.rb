@@ -4,6 +4,10 @@ def seed_image(file_name)
   File.open(Rails.root.join('public', 'images', 'seed', file_name))
 end
 
+def rand1to10
+  Faker::Number.between(1, 10)
+end
+
 users = []
 
 users << User.create(name: 'Jakub', email: 'foo@bar.com', password: 'foobar')
@@ -32,14 +36,16 @@ end
     description: Faker::Lorem.sentences(rand(1..3)).join(' '),
     price: Faker::Number.between(10, 1000) / 10.0,
     pictures_attributes: [
-      { file: seed_image('prod1.png') },
-      { file: seed_image('prod2.png') },
-      { file: seed_image('prod3.png') },
-      { file: seed_image('prod4.png') },
-      { file: seed_image('prod5.png') }
+      { file: seed_image("prod#{rand1to10}.jpg") },
+      { file: seed_image("prod#{rand1to10}.jpg") },
+      { file: seed_image("prod#{rand1to10}.jpg") },
+      { file: seed_image("prod#{rand1to10}.jpg") },
+      { file: seed_image("prod#{rand1to10}.jpg") }
     ]
   )
 end
+
+FactoryGirl.create_list :ticket, 10
 
 AdminUser.create!(email: 'admin@example.com',
                   password: 'password',

@@ -14,7 +14,7 @@ FactoryGirl.define do
     description { Faker::Lorem.sentences(rand(1..3)).join(' ') }
     price { Faker::Number.between(10, 1000) / 10.0 }
 
-    factory :product_with_presistent_pictures do
+    factory :product_with_pictures do
       transient do
         pictures_count 4
         file_name 'default.png'
@@ -26,7 +26,7 @@ FactoryGirl.define do
           evaluator.pictures_count,
           product: product,
           # file: seed_image(evaluator.file_name)
-          file: Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, "/public/images/seeed/#{filename}")))
+          file: Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, "/public/images/seed/#{evaluator.file_name}")))
         )
       end
     end

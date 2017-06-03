@@ -34,6 +34,11 @@ RSpec.describe Admin::ProductsController do
         }
 
         post '/admin/products', params: params
+
+        expect do
+          post '/admin/products', params: { product: params }
+        end.not_to change(Product, :count)
+
         expect(response).to redirect_to(new_admin_user_session_path)
       end
     end

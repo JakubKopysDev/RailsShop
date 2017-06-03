@@ -87,6 +87,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    choice (0.2.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -230,6 +231,11 @@ GEM
     rails-dom-testing (2.0.2)
       activesupport (>= 4.2.0, < 6.0)
       nokogiri (~> 1.6)
+    rails-erd (1.5.2)
+      activerecord (>= 3.2)
+      activesupport (>= 3.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     railties (5.0.2)
@@ -277,6 +283,7 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     rubocop-rspec (1.15.0)
       rubocop (>= 0.42.0)
+    ruby-graphviz (1.2.3)
     ruby-growl (4.1)
       uuid (~> 2.3, >= 2.3.5)
     ruby-progressbar (1.8.1)
@@ -368,6 +375,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.2)
   rails-controller-testing
+  rails-erd
   rspec-rails (~> 3.5)
   rubocop
   rubocop-rspec

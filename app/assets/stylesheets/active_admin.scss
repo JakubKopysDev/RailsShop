@@ -10,6 +10,9 @@
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_admin/base";
+$skinTextTable: darken(#7f8c8d, 30%);
+$skin: darken(#7f8c8d, 30%);
+$skinLogo: url("shield.png") no-repeat 35px/35px;
 @import "active_skin";
 
 // Overriding any non-variable SASS must be done after the fact.
@@ -19,4 +22,7 @@
 
 .show_product_pictures {
   width: 40% !important;
+}
+.attributes_table table th, .attributes_table table td {
+  color: darken(#7f8c8d, 30%) !important;
 }

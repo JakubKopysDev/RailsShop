@@ -19,6 +19,6 @@ class FileUploader < CarrierWave::Uploader::Base
   end
 
   def default_url(*)
-    '/images/fallback/' + [version_name, 'default_file.png'].compact.join('_')
+    '/images/fallback/' + [version_name, 'def.jpg'].compact.join('_')
   end
 end
