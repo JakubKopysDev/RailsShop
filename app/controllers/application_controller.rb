@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_filter :set_categories
 
   def disable_header
     @disable_header = true
@@ -13,6 +14,10 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def set_categories
+    @categories = Category.all
+  end
 
   def configure_permitted_parameters
     user_attrs = %i[name email password password_confirmation remember_me]

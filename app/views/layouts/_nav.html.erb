@@ -11,6 +11,26 @@
       </a>
     </div>
     <div class="collapse navbar-collapse" id="navbar">
+      <%= form_tag('/search', method: 'POST', class: 'navbar-form navbar-left') do %>
+        <div class="input-group">
+          <%= text_field_tag :query, '', class: 'form-control', id: 'search', placeholder: 'Search' %>
+          <div class="hide">
+            <% @categories.each do |category| %>
+              <div class="checkbox">
+                <label><%= check_box_tag "categories[#{category.name}]", category.id.to_s, false, id: "checkbox-#{category.id}-form" %>Option</label>
+              </div>
+            <% end %>
+          </div>
+          <div class="input-group-btn">
+            <%= button_tag type: 'submit', class: 'btn btn-default' do %>
+              <i class="fa fa-search" aria-hidden="true"></i>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <button class="btn btn-default navbar-btn" data-toggle="popover" data-placement="bottom" data-container="body" data-html="true">
+        Categories <i class="fa fa-caret-down" aria-hidden="true"></i>
+      </button>
       <ul class="nav navbar-nav navbar-right">
         <% if !user_signed_in? %>
           <li>
@@ -77,3 +97,10 @@
 </nav>
 
 <%= render '/modals/ticket' %>
+<div id="popover-content" class="hide">
+  <% @categories.each do |category| %>
+    <div class="checkbox">
+      <label><%= check_box_tag category.name, "1", false, id: "checkbox-#{category.id}-popover" %> <%= category.name %> </label>
+    </div>
+  <% end %>
+</div>

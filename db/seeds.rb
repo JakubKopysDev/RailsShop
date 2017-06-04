@@ -8,6 +8,17 @@ def rand1to10
   Faker::Number.between(1, 10)
 end
 
+categories = ['electronics', 'fashion and beauty', 'home', 'health',
+              'culture and entertainment', 'sport and recreation',
+              'motorization', 'collections and art', 'technology',
+              'science']
+
+categories.each do |category|
+  Category.create!(name: category)
+end
+
+categories = Category.all
+
 users = []
 
 users << User.create(name: 'Jakub', email: 'foo@bar.com', password: 'foobar')
@@ -17,14 +28,14 @@ users << User.create(name: 'Jakub', email: 'foo@bar.com', password: 'foobar')
 end
 
 10.times do
-  product = FactoryGirl.create :product
+  product = FactoryGirl.create :product, categories: categories.sample(2)
   3.times do
     FactoryGirl.create :review, product: product, user: users.sample
   end
 end
 
 3.times do
-  product = FactoryGirl.create :product_with_pictures
+  product = FactoryGirl.create :product_with_pictures, categories: categories.sample(2)
   3.times do
     FactoryGirl.create :review, product: product, user: users.sample
   end
@@ -35,6 +46,7 @@ end
     name: Faker::Commerce.unique.product_name[0..24],
     description: Faker::Lorem.sentences(rand(1..3)).join(' '),
     price: Faker::Number.between(10, 1000) / 10.0,
+    categories: categories.sample(2),
     pictures_attributes: [
       { file: seed_image("prod#{rand1to10}.jpg") },
       { file: seed_image("prod#{rand1to10}.jpg") },

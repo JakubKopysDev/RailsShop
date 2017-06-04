@@ -11,6 +11,7 @@
 @import "products.scss";
 @import "reviews.scss";
 @import "custom_bs.scss";
+@import "autocomplete.scss";
 
 @mixin aspect-ratio($width, $height) {
   position: relative;

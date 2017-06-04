@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   resources :products, only: %i[index show]
   resources :tickets, only: %i[new create]
 
+  get :autocomplete, to: 'products#autocomplete'
+  post :search, to: 'products#search'
+
   authenticate :user do
     get :cart,            to: 'carts#show'
     get :profile,         to: 'users#profile'

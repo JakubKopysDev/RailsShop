@@ -34,6 +34,16 @@ class Product < ApplicationRecord
     images.first
   end
 
+  def self.autocomplete_json(query)
+    where("lower(name) like ?", "%#{query}%")
+    .select(:name, :id).collect do |product|
+      {
+        value: product.name,
+        data: product.id
+      }
+    end.to_json
+  end
+
   private
 
   def validate_categories
