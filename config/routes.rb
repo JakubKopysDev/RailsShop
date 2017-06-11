@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :tickets, only: %i[new create]
 
   get :autocomplete, to: 'products#autocomplete'
-  post :search, to: 'products#search'
+  get :search, to: 'products#search'
 
   authenticate :user do
     get :cart,            to: 'carts#show'

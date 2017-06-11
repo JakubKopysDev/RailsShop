@@ -13,6 +13,8 @@
 @import "custom_bs.scss";
 @import "autocomplete.scss";
 
+.popover{position:fixed;}
+
 @mixin aspect-ratio($width, $height) {
   position: relative;
   &:before {

@@ -1,0 +1,7 @@
+<div id="popover-content" class="hide">
+  <% categories.each do |category| %>
+    <div class="checkbox">
+      <label><%= check_box_tag category.name, "1", false, id: "checkbox-#{category.id}-popover" %> <%= category.name %> </label>
+    </div>
+  <% end %>
+</div>

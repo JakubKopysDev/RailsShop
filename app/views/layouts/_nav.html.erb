@@ -11,7 +11,7 @@
       </a>
     </div>
     <div class="collapse navbar-collapse" id="navbar">
-      <%= form_tag('/search', method: 'POST', class: 'navbar-form navbar-left') do %>
+      <%= form_tag('/search', method: 'GET', class: 'navbar-form navbar-left') do %>
         <div class="input-group">
           <%= text_field_tag :query, '', class: 'form-control', id: 'search', placeholder: 'Search' %>
           <div class="hide">
@@ -97,10 +97,4 @@
 </nav>
 
 <%= render '/modals/ticket' %>
-<div id="popover-content" class="hide">
-  <% @categories.each do |category| %>
-    <div class="checkbox">
-      <label><%= check_box_tag category.name, "1", false, id: "checkbox-#{category.id}-popover" %> <%= category.name %> </label>
-    </div>
-  <% end %>
-</div>
+<%= render '/categories/filters_popover', categories: @categories %>

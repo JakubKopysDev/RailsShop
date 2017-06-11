@@ -28,11 +28,8 @@ function popoverIdToFormId(checkboxId) {
 $(document).on('change', 'input[type=checkbox]', function(e) {
   var formCheckboxId = popoverIdToFormId($(this).prop('id'));
   if ($(this).is(':checked')) {
-    console.log('checked', formCheckboxId);
     $(formCheckboxId).prop('checked', true);
-    // $('#checkbox-form-1').prop('checked', true);
   } else {
-    console.log('unchecked', $(this));
     $(formCheckboxId).prop('checked', true);
   }
 });
