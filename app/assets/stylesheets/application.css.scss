@@ -10,8 +10,45 @@
 @import "font-awesome";
 @import "products.scss";
 @import "reviews.scss";
+@import "carts.scss";
 @import "custom_bs.scss";
 @import "autocomplete.scss";
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  //height: 60px;
+  background-color: #f5f5f5;
+  margin-bottom: 0;
+}
+
+// html, body{
+//   .content {
+//     // height: 100%;
+//     .navbar-bottom {
+//       position: absolute;
+//       bottom: 0;
+//       right: 0;
+//       left: 0;
+//     }
+//   }
+// }
+
+.navbar-bottom {
+  margin-bottom: 0;
+}
 
 .popover{position:fixed;}
 
@@ -35,10 +72,12 @@
 @media screen and (max-width: 1007px) {
   .logo {
     padding-bottom: 30px;
+    max-width: 100%;
     img {
       float: none !important;
       display: block;
       margin: 0 auto !important;
+      max-width: 100%;
     }
   }
 }
@@ -76,6 +115,9 @@
   position: relative;
   // height: 350px;
   background-color: #fafafa;
+  .name-container {
+    padding-right: 0;
+  }
   h3.product-name {
     white-space: nowrap;
     overflow: hidden;
@@ -138,4 +180,32 @@ div.pagination {
   input {
     margin-top: -20px;
   }
+}
+
+@media screen and (max-width: 980px) {
+  body {
+    margin-bottom: 200px;
+  }
+
+  a.small-link {
+    display: none;
+  }
+  .product-header {
+    max-width: 100%;
+    margin: 0 auto;
+    .name-container {
+      padding: 0;
+    }
+  }
+  .product-name {
+    text-align: center;
+  }
+  .price {
+    width: 100% !important;
+    text-align: center;
+  }
+}
+
+.product-header {
+  max-width: 100%;
 }

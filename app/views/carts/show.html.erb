@@ -1,30 +1,67 @@
-<%# frozen_string_literal: true %>
-<div class="contanier">
-  <div class="col-sm-6 col col-sm-offset-3">
+<div class="container">
+  <div class="row">
+    <div class="col-sm-7 col-sm-offset-1">
+      <div class="panel panel-default panel-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th><span class="pull-right">Price</span></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @cart_items.each do |item| %>
+              <tr>
+                <td class="col-sm-5"><%= item.product.name %></td>
+                <td class="col-sm-5"><span class="pull-right"><%= item.product.price %> $</span></td>
+                <td class="col-sm-2">
+                  <%= link_to cart_item_path(item), method: :delete do %>
+                    <i class="fa fa-trash fa-lg pull-right" aria-hidden="true"></i>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    <div class="col-sm-4 cart-summary">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="col-sm-4">
+            <%= pluralize(@cart_items.count, 'product') %>
+          </div>
+          <div class="col-sm-5 col-sm-offset-3">
+            <span class="pull-right">
+              <%= @cart_items.sum(:price) %> $
+            </span>
+          </div>
 
-    <h3>Your shopping cart</h3>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Product</th>
-          <th>Price</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @cart_items.each do |item| %>
-          <tr>
-            <td class="col-sm-5"><%= item.product.name %></td>
-            <td class="col-sm-5"><%= item.product.price %> $</td>
-            <td class="col-sm-2">
-              <%= link_to 'Remove', cart_item_path(item), method: :delete, class: 'btn btn-danger' %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <div class="col-sm-3 col-sm-offset-9">
-      <%= link_to 'Checkout', '#', class: 'btn btn-success pull-right' %>
+          <div class="col-sm-4">
+            <span>shipping:</span>
+          </div>
+          <div class="col-sm-5 col-sm-offset-3">
+           <span class="pull-right">free</span>
+          </div>
+        </div>
+        
+        <div class="panel-footer cart-sum">
+          <div class="col-sm-4">
+            <b>Sum:</b>
+          </div>
+          <div class="col-sm-5 col-sm-offset-3">
+           <b class="pull-right">
+             <%= @cart_items.sum(:price) + 10 %> $
+           </b>
+          </div>
+          <div class="clearfix checkout">
+            <%= link_to 'Checkout', '#', class: 'btn btn-success pull-right' %>
+          </div>
+        </div>
+
+
+      </div>
     </div>
   </div>
 </div>

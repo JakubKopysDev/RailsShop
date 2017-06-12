@@ -108,6 +108,13 @@ body {
           flex-grow: 1;
 }
 
+.price {
+  padding: 0 !important;
+  overflow: hidden;
+  padding-right: 10px !important;
+  text-align: center;
+  // float: right;
+}
 .product-title, .price, .sizes, .colors {
   text-transform: UPPERCASE;
   font-weight: bold;

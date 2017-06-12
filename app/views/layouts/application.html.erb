@@ -4,18 +4,21 @@
   <head>
     <title>RailsShop</title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <%= render 'layouts/nav' unless @disable_header %>
-
   <body class="content">
+
+    <%= render 'layouts/nav' unless @disable_header %>
     <% if flash.any? %>
       <%= render 'layouts/alerts' %>
     <% end %>
 
     <%= yield %>
+
+    <%= render 'layouts/footer' %>
   </body>
 </html>

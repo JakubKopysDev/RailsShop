@@ -4,12 +4,12 @@
     <%= link_to product_path(product) do %>
         <%= image_tag product.image.url(:medium), class: 'product-thumbnail' %>
         <div class="row product-header">
-          <div class="col-sm-9">
+          <div class="col-sm-9 name-container">
             <h3 class="product-name"><%= product.name %></h3>
           </div>
           <div class="col-sm-3 price">
             <h3>
-              <label class="pull-right">$<%= product.price %></label>
+              <label class="">$<%= product.price %></label>
             </h3>
           </div>
         </div>
